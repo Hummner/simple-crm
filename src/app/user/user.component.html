@@ -1,5 +1,28 @@
-<p>user works!</p>
+<mat-card appearance="outlined">
+  <table class="user-table">
+    <tr>
+      <th>Name</th>
+      <th>E-mail</th>
+      <th>City</th>
+    </tr>
+    @for (user of allUsers; track user; let index = $index;) {
+      <tr [routerLink]="['/user/', user['customIdName']]">
+        <td>
+          {{ user['firstname']}} {{ user['lastname']}}
+        </td>
+          <td>
+          {{ user['email']}}
+        </td>
+          <td>
+          {{ user['city']}}
+        </td>
+      </tr>
 
-<button (click)="openDialog()" matTooltip="Add user" matTooltipPosition="above" class="add-user-button" color="primary" mat-fab>
-    <mat-icon>add</mat-icon>
+    }
+  </table>
+</mat-card>
+
+<button (click)="openDialog()" matTooltip="Add user" matTooltipPosition="above" class="add-user-button" color="primary"
+  mat-fab>
+  <mat-icon>add</mat-icon>
 </button>
