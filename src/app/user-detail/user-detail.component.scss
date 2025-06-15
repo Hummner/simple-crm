@@ -1,0 +1,37 @@
+.user-detail-header {
+    background-color: #b13535;
+    min-height: 250px;
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-direction: row;
+    padding: 24px;
+}
+
+.logo {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    background: azure;
+    object-fit: cover;
+}
+
+.user-details {
+    margin-left: 32px;
+    flex-direction: column;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100px;
+    h2 {
+        margin-bottom: 0;
+    }
+}
+
+.edit-icon-menu {
+    position: absolute;
+    right: 0;
+    top: 0;
+}

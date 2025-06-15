@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -15,7 +15,7 @@ import {
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 import { MatCardModule } from '@angular/material/card';
 import { Firestore } from '@angular/fire/firestore';
-import { collection, doc, onSnapshot } from "firebase/firestore";
+import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { DocumentData } from "firebase/firestore";
 import { RouterLink } from '@angular/router';
 
@@ -28,34 +28,38 @@ import { RouterLink } from '@angular/router';
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
 
 
   firestore: Firestore;
   unsub: any;
   allUsers: DocumentData[] = [];
-  
+
 
 
   constructor(public dialog: MatDialog) {
     this.firestore = inject(Firestore);
- 
+
 
     this.unsub = onSnapshot(this.usersCollectionRef(), (users) => {
       this.allUsers = [];
       users.forEach(user => {
-        console.log(user.id);
         let newUser = user.data();
-        newUser["customIdName"] = user.id
+        if (newUser['customIdName'] === undefined) {
+          newUser["customIdName"] = user.id;
+          updateDoc(this.userRef(user.id), {
+            customIdName: user.id
+          })
 
-        
+        }
+
+
+
         this.allUsers.push(newUser);
-        
+
       })
 
-      console.log("Current data: ", this.allUsers);
 
-  
     });
 
 
@@ -79,6 +83,10 @@ export class UserComponent implements OnInit {
 
   usersCollectionRef() {
     return (collection(this.firestore, "users"))
+  }
+
+  userRef(id: string) {
+    return doc(this.firestore, 'users', id)
   }
 
 
