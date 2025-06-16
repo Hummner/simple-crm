@@ -63,13 +63,13 @@ export class UserDetailComponent implements OnInit, OnDestroy {
 
   editNameMenu() {
     const dialog = this.dialog.open(DialogEditUserComponent);
-    // dialog.componentInstance.user = this.user;
+    dialog.componentInstance.user = new User(this.user);
   }
 
 
   editAddressMenu() {
     const dialog =  this.dialog.open(DialogEditAddressComponent);
-    dialog.componentInstance.user = this.user;
+    dialog.componentInstance.user = new User(this.user);
 
   }
 

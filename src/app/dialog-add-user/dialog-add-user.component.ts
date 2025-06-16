@@ -26,7 +26,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-dialog-add-user',
   standalone: true,
   providers: [provideNativeDateAdapter()],
-  imports: [MatDialogActions, MatDialogContent, MatDialogClose, MatIconModule, MatButtonModule, MatDialogTitle, MatInputModule, MatDatepickerModule, MatFormFieldModule, FormsModule, MatProgressBarModule, CommonModule],
+  imports: [MatDialogActions, MatDialogContent, MatIconModule, MatButtonModule, MatDialogTitle, MatInputModule, MatDatepickerModule, MatFormFieldModule, FormsModule, MatProgressBarModule, CommonModule],
   templateUrl: './dialog-add-user.component.html',
   styleUrl: './dialog-add-user.component.scss'
 })
