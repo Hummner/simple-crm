@@ -55,6 +55,7 @@ export class DialogEditUserComponent {
     updateDoc(this.userRef(this.user.customIdName), this.user.toJson()).then(() => {
       console.log("This user is updated: ", this.user);
       this.loading = false;
+      this.dialogRef.close();
     })
 
 
