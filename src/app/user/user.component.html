@@ -1,28 +1,61 @@
-<mat-card appearance="outlined">
-  <table class="user-table">
-    <tr>
-      <th>Name</th>
-      <th>E-mail</th>
-      <th>City</th>
-    </tr>
-    @for (user of allUsers; track user; let index = $index;) {
+<section>
+  <mat-card class="user-header">
+    <div class="sort-field">
+      <mat-form-field>
+        <mat-label>Sort</mat-label>
+        <mat-select matNativeControl [(ngModel)]="sortField">
+          <mat-option value="firstname"> by firstname</mat-option>
+          <mat-option value="lastname">by lastname</mat-option>
+          <mat-option value="email">by email</mat-option>
+          <mat-option value="city">by city</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+    <mat-button-toggle-group [hideSingleSelectionIndicator]="hideSingleSelectionIndicator()" color="primary" class="toggle-button" [(ngModel)]="sortDirection">
+      <mat-button-toggle value="asc">A-Z</mat-button-toggle>
+      <mat-button-toggle value="desc">Z-A</mat-button-toggle>
+    </mat-button-toggle-group>
+    <div>
+      <mat-form-field class="filter-form-field">
+        <mat-label>Filter</mat-label>
+        <input matInput type="text" [(ngModel)]="filterValue">
+        @if (filterValue) {
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="filterValue=''">
+          <mat-icon>close</mat-icon>
+        </button>
+        }
+      </mat-form-field>
+    </div>
+  </mat-card>
+
+  <mat-card appearance="outlined">
+    <table class="user-table">
+      <tr>
+        <th>Name</th>
+        <th>E-mail</th>
+        <th>City</th>
+      </tr>
+      @for (user of setFilter; track user; let index = $index;) {
       <tr [routerLink]="['/user/', user['customIdName']]">
         <td>
           {{ user['firstname']}} {{ user['lastname']}}
         </td>
-          <td>
+        <td>
           {{ user['email']}}
         </td>
-          <td>
+        <td>
           {{ user['city']}}
         </td>
       </tr>
 
-    }
-  </table>
-</mat-card>
+      }
+    </table>
+  </mat-card>
 
-<button (click)="openDialog()" matTooltip="Add user" matTooltipPosition="above" class="add-user-button" color="primary"
-  mat-fab>
-  <mat-icon>add</mat-icon>
-</button>
+  <button (click)="openDialog()" matTooltip="Add user" matTooltipPosition="above" class="add-user-button"
+    color="primary" mat-fab>
+    <mat-icon>add</mat-icon>
+  </button>
+
+</section>

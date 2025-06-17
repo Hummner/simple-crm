@@ -1,3 +1,5 @@
+
+
 .add-user-button {
     position: absolute;
     right: 56px;
@@ -52,3 +54,47 @@
 mat-card {
     padding: 16px 0;
 }
+
+.user-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+    padding: 16px 16px;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.filter-form-field {
+    width: 300px;
+}
+
+.sort-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.toggle-button {
+    width: fit-content;
+    height: 56px;
+    margin-bottom: 22px;
+}
+
+mat-button-toggle {
+    height: 56px;
+    align-items: center;
+    justify-content: center;
+}
+
+.mat-button-toggle-appearance-standard {
+    line-height: 56px !important
+}
+
+
+
